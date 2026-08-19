@@ -12,9 +12,9 @@ from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import ElasticNet
 from urllib.parse import urlparse
-import mlflow  # type: ignore[reportMissingImports]
-from mlflow.models import infer_signature  # type: ignore[reportMissingImports]
-import mlflow.sklearn  # type: ignore[reportMissingImports]
+import mlflow
+from mlflow.models import infer_signature
+import mlflow.sklearn
 
 import logging
 
@@ -75,13 +75,13 @@ if __name__ == "__main__":
         mlflow.log_metric("r2", r2)
         mlflow.log_metric("mae", mae)
 
-        predictions = lr.predict(train_x)
-        signature = infer_signature(train_x, predictions)
+        #predictions = lr.predict(train_x)
+        #signature = infer_signature(train_x, predictions)
 
         ## For Remote server only(DAGShub)
 
-        # remote_server_uri="https://dagshub.com/krishnaik06/mlflowexperiments.mlflow"
-        # mlflow.set_tracking_uri(remote_server_uri)
+        remote_server_uri="https://dagshub.com/Darshan-Patil-18/mlflowexp.mlflow"
+        mlflow.set_tracking_uri(remote_server_uri)
 
         tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
 
